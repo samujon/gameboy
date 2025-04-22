@@ -18,6 +18,11 @@ pub enum CombinedRegisters{
     HL
 }
 
+const ZERO: u8 = 0b10000000;
+const SUBTRACTION: u8 = 0b01000000;
+const HALF_CARRY: u8 = 0b00100000;
+const CARRY: u8 = 0b00010000;
+
 fn combine(high: u8, low: u8) -> u16 {
     ((high as u16) << 8) | (low as u16)
 }
