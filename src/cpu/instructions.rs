@@ -13,8 +13,8 @@ pub enum TargetRegister{
     A,
 }
 
-impl TargetRegister{
-    fn from_u8(value: u8) -> TargetRegister {
+impl std::convert::From<u8> for TargetRegister {
+    fn from(value: u8) -> TargetRegister {
         match value {
             0b000 => TargetRegister::B,
             0b001 => TargetRegister::C,
@@ -24,12 +24,13 @@ impl TargetRegister{
             0b101 => TargetRegister::L,
             0b110 => TargetRegister::HL,
             0b111 => TargetRegister::A,
-            _ => panic!("Invalid register value"),
-        }
+            _ => panic!("Invalid Target Register {}", value),
+         }
     }
-    
-    fn to_u8(&self) -> u8 {
-        match self {
+}
+impl std::convert::From<TargetRegister> for u8 {
+    fn from(value: TargetRegister) -> u8 {
+        match value {
             TargetRegister::B => 0b000,
             TargetRegister::C => 0b001,
             TargetRegister::D => 0b010,
